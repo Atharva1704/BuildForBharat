@@ -2,6 +2,7 @@
 import express from 'express';
 import { spawn } from 'child_process';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 const port = 3001;
@@ -10,8 +11,8 @@ app.use(cors());
 
 app.post('/run-ml-algo', async (req, res) => {
     console.log("P1");
-    const pythonScriptPath = 'ml_algo/chatbot.py';
-
+    // const pythonScriptPath = 'ml_algo/chatbot.py';
+    const pythonScriptPath = path.join(__dirname, 'ml_algo', 'chatbot.py'); 
     try {
         // Install dependencies
         console.log("P2");
@@ -20,7 +21,8 @@ app.post('/run-ml-algo', async (req, res) => {
         console.log("P2.1");
 
         // Run the Python script asynchronously
-        const pythonProcess = spawn('/Library/Frameworks/Python.framework/Versions/3.11/bin/python3', [pythonScriptPath]);
+        // const pythonProcess = spawn('/Library/Frameworks/Python.framework/Versions/3.11/bin/python3', [pythonScriptPath]);
+        const pythonProcess = spawn('python3', [pythonScriptPath]); // Assuming python3 is in the system PATH
 
         // Handle Python process events
         pythonProcess.stdout.on('data', (data) => {
