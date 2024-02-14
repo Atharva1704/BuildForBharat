@@ -1,0 +1,3 @@
+[submodule "BuildForBharat/frontend"]
+	path = BuildForBharat/frontend
+	url = https://github.com/Atharva1704/BuildForBharat.git
